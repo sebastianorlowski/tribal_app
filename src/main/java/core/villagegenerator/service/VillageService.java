@@ -1,5 +1,6 @@
 package core.villagegenerator.service;
 
+import core.dataloader.persistence.model.Ally;
 import core.dataloader.persistence.model.Player;
 import core.dataloader.persistence.model.Village;
 import core.dataloader.persistence.repository.PlayerRepository;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class VillageService {
@@ -24,6 +26,15 @@ public class VillageService {
         this.villageRepository = villageRepository;
         this.playerRepository = playerRepository;
         this.calculateDistance = calculateDistance;
+    }
+
+    public List<Village> findPlayersVillages(List<String> players) {
+        List<Player> findPlayers = playerRepository.findPlayersByPlayerNameIn(players);
+        List<Village> villages = new ArrayList<>();
+        findPlayers.forEach(player ->
+            villages.addAll(villageRepository.findVillageByPlayerId(player.getId())));
+
+        return villages;
     }
 
     public List<Village> findPlayerVillages(String name) {
@@ -52,7 +63,7 @@ public class VillageService {
         Map<Village, List<Player>> playersToVillage = new HashMap<>();
         villagesFromPlayer.forEach(village -> {
             playersToVillage.put(village,
-                    retrievePlayersNearVillage(
+                    retrievePlayersNearVillage(playerName,
                             calculateVillagesByTime(villages, village.getX() + "|" +
                                     village.getY(), unitTime, time), countOfVillage));
         });
@@ -76,10 +87,25 @@ public class VillageService {
         return playerToVillage;
     }
 
-    private List<Player> retrievePlayersNearVillage(Map<Player, Integer> villagesWithCount, Integer countOfVillage) {
+    public List<Village> villagesByCoords(Ally ally, Integer x) {
+        List<Village> villages = villagesByPlayers(ally, x);
+        return villages.stream()
+                .filter(village -> village.getX() < x)
+                .collect(Collectors.toList());
+    }
+
+    /// Ally -> Get player By ally
+    private List<Village> villagesByPlayers(Ally ally, Integer x) {
+        List<Player> players = playerRepository.findPlayersByAlly(ally);
+        List<Village> villages = new ArrayList<>();
+        players.forEach(player -> villages.addAll(player.getVillages()));
+        return villages;
+    }
+
+    private List<Player> retrievePlayersNearVillage(String playerName, Map<Player, Integer> villagesWithCount, Integer countOfVillage) {
         List<Player> players = new ArrayList<>();
         villagesWithCount.forEach(((player, integer) -> {
-            if (integer >= countOfVillage) {
+            if (integer >= countOfVillage && !player.getPlayerName().equals(playerName)) {
                 players.add(player);
             }
         }));

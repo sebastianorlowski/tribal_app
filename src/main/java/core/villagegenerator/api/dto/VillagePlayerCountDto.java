@@ -33,4 +33,8 @@ public class VillagePlayerCountDto {
         players.forEach(player -> joiner.add("[player]" + player + "[/player]"));
         return joiner.toString();
     }
+
+    public String toStringVillagePlayerName() {
+        return coords + " -> " + "[player]" + playerName + "[/player]" + "\n";
+    }
 }

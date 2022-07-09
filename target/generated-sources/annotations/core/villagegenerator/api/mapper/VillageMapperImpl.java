@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Generated(
     value = "org.mapstruct.ap.MappingProcessor",
-    date = "2022-05-08T19:10:28+0200",
+    date = "2022-06-22T21:21:46+0200",
     comments = "version: 1.4.2.Final, compiler: javac, environment: Java 11.0.15 (Private Build)"
 )
 @Component
@@ -66,6 +66,24 @@ public class VillageMapperImpl implements VillageMapper {
             if ( list != null ) {
                 villagePlayerCountDto.setPlayers( new ArrayList<String>( list ) );
             }
+        }
+
+        return villagePlayerCountDto;
+    }
+
+    @Override
+    public VillagePlayerCountDto asPlayerName(String coords, String playerName) {
+        if ( coords == null && playerName == null ) {
+            return null;
+        }
+
+        VillagePlayerCountDto villagePlayerCountDto = new VillagePlayerCountDto();
+
+        if ( coords != null ) {
+            villagePlayerCountDto.setCoords( coords );
+        }
+        if ( playerName != null ) {
+            villagePlayerCountDto.setPlayerName( playerName );
         }
 
         return villagePlayerCountDto;

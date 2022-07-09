@@ -28,6 +28,12 @@ public interface VillageMapper {
         return villages.stream().map(this::villageDto).collect(Collectors.toList());
     }
 
+    default List<String> asCoordsList(List<Village> villagesList) {
+        return villagesList.stream()
+                .map(this::asCoords)
+                .collect(Collectors.toList());
+    }
+
     default String asCoords(Village village) {
         return String.format("%s|%s", village.getX(), village.getY());
     }
@@ -65,5 +71,17 @@ public interface VillageMapper {
             playerNames.add(player.getPlayerName());
         });
         return playerNames;
+    }
+
+    @Mapping(target = "villageCount", ignore = true)
+    @Mapping(target = "players", ignore = true)
+    VillagePlayerCountDto asPlayerName(String coords, String playerName);
+
+    default List<VillagePlayerCountDto> asPlayerVillageList(Map<Village, Player> playerToVillage) {
+        List<VillagePlayerCountDto> villagePlayerCountDtoList = new ArrayList<>();
+        playerToVillage.forEach(((village, player) -> {
+            villagePlayerCountDtoList.add(asPlayerName(village.getX() + "|" + village.getY(), player.getPlayerName()));
+        }));
+        return villagePlayerCountDtoList;
     }
 }

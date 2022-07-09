@@ -22,11 +22,14 @@ public class Village {
     private String villageId;
 
     @Column(name = "x_position")
-    private String x;
+    private Integer x;
 
     @Column(name = "y_position")
-    private String y;
+    private Integer y;
 
     @ManyToOne(cascade = CascadeType.REMOVE)
     private Player player;
+
+    @OneToOne(mappedBy = "village")
+    private Unit unit;
 }

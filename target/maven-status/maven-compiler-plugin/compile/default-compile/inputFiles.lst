@@ -1,7 +1,9 @@
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/service/DataLoaderService.java
+/home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/persistence/model/Ally.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/villagegenerator/service/VillageService.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/persistence/model/Player.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/villagegenerator/api/dto/VillagePlayerCountDto.java
+/home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/statistic/api/StatisticController.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/catapultgenerator/api/CatapultController.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/service/CalculateDistance.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/api/DataLoaderController.java
@@ -9,9 +11,12 @@
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/persistence/repository/VillageRepository.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/villagegenerator/api/VillageController.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/Core.java
+/home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/villagegenerator/service/AllyService.java
+/home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/persistence/repository/AllyRepository.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/persistence/repository/UnitRepository.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/persistence/model/Village.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/persistence/model/Unit.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/villagegenerator/api/dto/VillageDto.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/dataloader/persistence/model/UnitInfo.java
+/home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/statistic/service/StatisticService.java
 /home/sebastian/Desktop/Projects/CatapultGenerator/src/main/java/core/villagegenerator/api/mapper/VillageMapper.java

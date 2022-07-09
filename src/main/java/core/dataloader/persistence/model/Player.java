@@ -26,4 +26,7 @@ public class Player {
 
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private List<Village> villages;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Ally ally;
 }
